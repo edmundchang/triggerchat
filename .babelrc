@@ -1,0 +1,13 @@
+{
+    "presets": [
+      "babel-preset-react",
+      "babel-preset-env",
+    //   "babel-preset-es2016",
+      "react",
+      ["env", { "modules": false }],
+      "stage-2"
+    ],
+    "plugins": [
+      "babel-plugin-transform-class-properties"
+    ]
+  }
