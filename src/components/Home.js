@@ -9,7 +9,7 @@ export default function Home() {
     <Interactive
       as="a"
       {...s.link}
-      href="https://github.com/rafrex/spa-github-pages#readme"
+      href="https://github.com/edmundchang/triggerchat/blob/master/README.md"
     >{text}</Interactive>
   );
 
