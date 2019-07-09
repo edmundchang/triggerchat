@@ -28,6 +28,11 @@ export default function App() {
         <Route component={PageNotFound} />
       </Switch>
 
+      <p>Timer</p>
+      <DateCountdown
+        dateTo="7/11/2019">
+      </DateCountdown>
+
       <div style={s.creditLine}>
         <Interactive
           as="a"
