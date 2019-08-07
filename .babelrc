@@ -8,8 +8,6 @@
       "stage-2"
     ],
     "plugins": [
-      "babel-plugin-transform-class-properties",
-      "transform-object-rest-spread",
-      "transform-react-jsx"
+      "babel-plugin-transform-class-properties"
     ]
   }
