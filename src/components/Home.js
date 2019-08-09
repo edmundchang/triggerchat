@@ -41,6 +41,12 @@ export default function Home() {
           to="/example/two-deep?field1=foo&field2=bar#boom!"
         >Example two deep with query and hash</Interactive>
       </div>
+
+      <form action="https://formspree.io/chang.edmund@gmail.com" method="POST" >
+        <input type="text" name="name"/>
+      </form>
+
+
     </div>
   );
 }
