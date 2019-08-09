@@ -42,8 +42,10 @@ export default function Home() {
         >Example two deep with query and hash</Interactive>
       </div>
 
-      <form action="https://formspree.io/chang.edmund@gmail.com" method="POST" >
-        <input type="text" name="name"/>
+      <form action="https://formspree.io/email@domain.tld" method="POST">
+        <input type="text" name="name" />
+        <input type="email" name="_replyto" />
+        <input type="submit" value="Send" />
       </form>
 
 
