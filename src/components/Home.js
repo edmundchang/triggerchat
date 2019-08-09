@@ -42,13 +42,12 @@ export default function Home() {
         >Example two deep with query and hash</Interactive>
       </div>
 
-      <form action="https://formspree.io/email@domain.tld" method="POST">
-        <input type="text" name="name" />
-        <input type="email" name="_replyto" />
-        <input type="submit" value="Send" />
+      <form method="POST" action="https://formspree.io/changedmund@gmail.com">
+        <input type="email" name="email" placeholder="Your email"/>
+          <textarea name="message" placeholder="Test Message"></textarea>
+          <button type="submit">Send Test</button>
       </form>
 
-
     </div>
-  );
-}
+      );
+    }
