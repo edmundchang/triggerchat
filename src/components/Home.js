@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom';
 import { Code } from '../styles/style';
 import s from '../styles/home.style';
 
+// import entire SDK
+var AWS = require('aws-sdk');
+
 export default function Home() {
   const repoReadmeLink = text => (
     <Interactive
