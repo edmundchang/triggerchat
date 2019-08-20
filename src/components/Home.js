@@ -3,9 +3,21 @@ import Interactive from 'react-interactive';
 import { Link } from 'react-router-dom';
 import { Code } from '../styles/style';
 import s from '../styles/home.style';
+import { GoogleLogout } from 'react-google-login';
+import { GoogleLogin } from 'react-google-login';
+
 
 // import entire SDK
 var AWS = require('aws-sdk');
+
+const responseGoogle = (response) => {
+  console.log(response);
+  alert(response);
+}
+
+const logout = () => {
+  console.log('logout') // eslint-disable-line
+}
 
 export default function Home() {
   const repoReadmeLink = text => (
@@ -46,11 +58,25 @@ export default function Home() {
       </div>
 
       <form method="POST" action="https://formspree.io/changedmund@gmail.com">
-        <input type="email" name="email" placeholder="Your email"/>
-          <textarea name="message" placeholder="Test Message"></textarea>
-          <button type="submit">Send Test</button>
+        <input type="email" name="email" placeholder="Your email" />
+        <textarea name="message" placeholder="Test Message"></textarea>
+        <button type="submit">Send Test</button>
       </form>
 
+      <GoogleLogin
+        clientId="736910884720-ntcuf3odqsd0suv9bao9mt73i319fibi.apps.googleusercontent.com"
+        buttonText="Login"
+        onSuccess={responseGoogle}
+        onFailure={responseGoogle}
+        cookiePolicy={'single_host_origin'}
+      />
+      <GoogleLogout
+        clientId="736910884720-ntcuf3odqsd0suv9bao9mt73i319fibi.apps.googleusercontent.com"
+        buttonText="Logout"
+        onLogoutSuccess={logout}
+      >
+      </GoogleLogout>
+
     </div>
-      );
-    }
+  );
+}
