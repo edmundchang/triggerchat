@@ -20,31 +20,35 @@ const repoReadmeLink = text => (
   >{text}</Interactive>
 );
 
-const success = response => {
-  console.log(response) // eslint-disable-line
-  loggedIn = true;
-}
-
-const error = response => {
-  console.error(response) // eslint-disable-line
-}
-
-const loading = () => {
-  console.log('loading') // eslint-disable-line
-}
-
-const logout = () => {
-  console.log('logout') // eslint-disable-line
-  loggedIn = false;
-}
-
 export default class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       loggedIn: false
     }
+    console.log('in constructor');
   }
+
+  successResponse(response) {
+    console.log('onSuccess')
+    console.log(response) // eslint-disable-line
+    loggedIn = true;
+  }
+
+  errorResponse(response) {
+    console.log('onError')
+    console.error(response) // eslint-disable-line
+  }
+
+  loadingResponse(response) {
+    console.log('loading...') // eslint-disable-line
+  }
+
+  logout() {
+    console.log('logout') // eslint-disable-line
+    loggedIn = false;
+  }
+
 
   componentDidMount() {
     //this.setState({ loggedIn: false });
@@ -94,14 +98,14 @@ export default class Home extends React.Component {
         {this.loggedIn ? <GoogleLogout
           clientId={clientId}
           buttonText="Logout"
-          onLogoutSuccess={logout}
+          onLogoutSuccess={() => { this.logout() }}
         />
           : <GoogleLogin
             clientId={clientId}
             buttonText="Login"
-            onSuccess={success}
-            onFailure={error}
-            onRequest={loading}
+            onSuccess={(e) => { this.successResponse(e) }}
+            onFailure={(e) => { this.errorResponse(e) }}
+            onRequest={(e) => { this.loadingResponse(e) }}
             cookiePolicy={'single_host_origin'}
           />}
 
