@@ -32,7 +32,7 @@ export default class Home extends React.Component {
   successResponse(response) {
     console.log('onSuccess')
     console.log(response) // eslint-disable-line
-    loggedIn = true;
+    this.setState({loggedIn: true});
   }
 
   errorResponse(response) {
@@ -46,7 +46,7 @@ export default class Home extends React.Component {
 
   logout() {
     console.log('logout') // eslint-disable-line
-    loggedIn = false;
+    this.setState({loggedIn: false});
   }
 
 
@@ -95,7 +95,7 @@ export default class Home extends React.Component {
           <button type="submit">Send Test</button>
         </form>
 
-        {this.loggedIn ? <GoogleLogout
+        {this.state.loggedIn ? <GoogleLogout
           clientId={clientId}
           buttonText="Logout"
           onLogoutSuccess={() => { this.logout() }}
