@@ -30,9 +30,10 @@ export default class Home extends React.Component {
   }
 
   successResponse(response) {
-    console.log('onSuccess')
+    console.log('onSuccess start')
     console.log(response) // eslint-disable-line
     this.setState({loggedIn: true});
+    console.log('onSuccess finish')
   }
 
   errorResponse(response) {
@@ -41,7 +42,7 @@ export default class Home extends React.Component {
   }
 
   loadingResponse(response) {
-    console.log('loading...') // eslint-disable-line
+    console.log('loading') // eslint-disable-line
   }
 
   logout() {
