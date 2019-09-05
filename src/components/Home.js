@@ -34,7 +34,8 @@ export default class Home extends React.Component {
   successResponse(response) {
     console.log('onSuccess start')
     console.log(response) // eslint-disable-line
-    this.setState({username: response});
+    //this.setState({username: response});
+    this.setState({username: "LOGGED IN USER"});
     this.setState({loggedIn: true});
     console.log('onSuccess finish')
   }
