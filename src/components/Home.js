@@ -5,6 +5,7 @@ import { Code } from '../styles/style';
 import s from '../styles/home.style';
 import { GoogleLogout } from 'react-google-login';
 import { GoogleLogin } from 'react-google-login';
+import WelcomeMessage from './WelcomeMessage';
 
 
 // import entire SDK
@@ -24,7 +25,8 @@ export default class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loggedIn: false
+      loggedIn: false,
+      username: ""
     }
     console.log('in constructor');
   }
@@ -32,6 +34,7 @@ export default class Home extends React.Component {
   successResponse(response) {
     console.log('onSuccess start')
     console.log(response) // eslint-disable-line
+    this.setState({username: response});
     this.setState({loggedIn: true});
     console.log('onSuccess finish')
   }
@@ -95,6 +98,8 @@ export default class Home extends React.Component {
           <textarea name="message" placeholder="Test Message"></textarea>
           <button type="submit">Send Test</button>
         </form>
+
+        <WelcomeMessage username={this.state.username}/>
 
         {this.state.loggedIn ? <GoogleLogout
           clientId={clientId}
