@@ -10,6 +10,12 @@ import WelcomeMessage from './WelcomeMessage';
 
 // import entire SDK
 var AWS = require('aws-sdk');
+// Set the Region and creds
+AWS.config.update({ "accessKeyId": "AKIA4CIEUDFRYQYYOC36", "secretAccessKey": "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", "region": "us-west-2" });
+// only works server side, https://stackoverflow.com/questions/49185271/aws-filesystemcredentials-is-not-a-constructor
+// AWS.config.loadFromPath('../../credentials.json');
+// Create DynamoDB document client
+var docClient = new AWS.DynamoDB.DocumentClient({apiVersion: '2012-08-10'});
 
 const clientId = '736910884720-ntcuf3odqsd0suv9bao9mt73i319fibi.apps.googleusercontent.com'
 
@@ -36,6 +42,20 @@ export default class Home extends React.Component {
     console.log(response) // eslint-disable-line
     this.setState({ username: response.profileObj.name });
     this.setState({ loggedIn: true });
+    
+    var params = {
+      TableName: 'refcode_users',
+      Key: {'user_id': response.googleId}
+     };
+     
+     docClient.get(params, function(err, data) {
+       if (err) {
+         console.log("Error", err);
+       } else {
+         console.log("Success", data.Item);
+       }
+     });
+
     console.log('onSuccess finish')
   }
 
@@ -79,7 +99,6 @@ export default class Home extends React.Component {
           Please see the {repoReadmeLink('repo readme')} for instructions on how to
           use this boilerplate to deploy your own single page app using GitHub Pages.
         </p>
-    <style>.bmc-button img{width: 27px !important;margin-bottom: 1px !important;box-shadow: none !important;border: none !important;vertical-align: middle !important;}.bmc-button{line-height: 36px !important;height:37px !important;text-decoration: none !important;display:inline-flex !important;color:#FFFFFF !important;background-color:#FF813F !important;border-radius: 3px !important;border: 1px solid transparent !important;padding: 1px 9px !important;font-size: 22px !important;letter-spacing: 0.6px !important;box-shadow: 0px 1px 2px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;margin: 0 auto !important;font-family:'Cookie', cursive !important;-webkit-box-sizing: border-box !important;box-sizing: border-box !important;-o-transition: 0.3s all linear !important;-webkit-transition: 0.3s all linear !important;-moz-transition: 0.3s all linear !important;-ms-transition: 0.3s all linear !important;transition: 0.3s all linear !important;}.bmc-button:hover, .bmc-button:active, .bmc-button:focus {-webkit-box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;text-decoration: none !important;box-shadow: 0px 1px 2px 2px rgba(190, 190, 190, 0.5) !important;opacity: 0.85 !important;color:#FFFFFF !important;}</style><link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet"><a class="bmc-button" target="_blank" href="https://www.buymeacoffee.com/A2HxJ4D"><img src="https://bmc-cdn.nyc3.digitaloceanspaces.com/BMC-button-images/BMC-btn-logo.svg" alt="Buy me a coffee"><span style="margin-left:5px">Buy me a coffee</span></a>
         <div style={s.pageLinkContainer}>
           <Interactive
             as={Link}
@@ -116,6 +135,9 @@ export default class Home extends React.Component {
             onRequest={(e) => { this.loadingResponse(e) }}
             cookiePolicy={'single_host_origin'}
           />}
+
+        <br></br>
+        <a href="https://www.buymeacoffee.com/A2HxJ4D" target="_blank"><img src="https://bmc-cdn.nyc3.digitaloceanspaces.com/BMC-button-images/custom_images/yellow_img.png" alt="Buy Me A Coffee" /></a>
 
       </div>
     )
