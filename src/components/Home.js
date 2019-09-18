@@ -11,11 +11,11 @@ import WelcomeMessage from './WelcomeMessage';
 // import entire SDK
 var AWS = require('aws-sdk');
 // Set the Region and creds
-AWS.config.update({ "accessKeyId": "AKIA4CIEUDFRYQYYOC36", "secretAccessKey": "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", "region": "us-west-2" });
+//AWS.config.update({ "accessKeyId": "xxx", "secretAccessKey": "xxx", "region": "us-west-2" });
 // only works server side, https://stackoverflow.com/questions/49185271/aws-filesystemcredentials-is-not-a-constructor
 // AWS.config.loadFromPath('../../credentials.json');
 // Create DynamoDB document client
-var docClient = new AWS.DynamoDB.DocumentClient({apiVersion: '2012-08-10'});
+// var docClient = new AWS.DynamoDB.DocumentClient({apiVersion: '2012-08-10'});
 
 const clientId = '736910884720-ntcuf3odqsd0suv9bao9mt73i319fibi.apps.googleusercontent.com'
 
@@ -43,18 +43,18 @@ export default class Home extends React.Component {
     this.setState({ username: response.profileObj.name });
     this.setState({ loggedIn: true });
     
-    var params = {
-      TableName: 'refcode_users',
-      Key: {'user_id': response.googleId}
-     };
+    // var params = {
+    //   TableName: 'refcode_users',
+    //   Key: {'user_id': response.googleId}
+    //  };
      
-     docClient.get(params, function(err, data) {
-       if (err) {
-         console.log("Error", err);
-       } else {
-         console.log("Success", data.Item);
-       }
-     });
+    //  docClient.get(params, function(err, data) {
+    //    if (err) {
+    //      console.log("Error", err);
+    //    } else {
+    //      console.log("Success", data.Item);
+    //    }
+    //  });
 
     console.log('onSuccess finish')
   }
