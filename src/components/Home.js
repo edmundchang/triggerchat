@@ -42,12 +42,12 @@ export default class Home extends React.Component {
     console.log(response) // eslint-disable-line
     this.setState({ username: response.profileObj.name });
     this.setState({ loggedIn: true });
-    
+
     // var params = {
     //   TableName: 'refcode_users',
     //   Key: {'user_id': response.googleId}
     //  };
-     
+
     //  docClient.get(params, function(err, data) {
     //    if (err) {
     //      console.log("Error", err);
@@ -95,9 +95,12 @@ export default class Home extends React.Component {
           functionality deployed to overcome GitHub&nbsp;Pages incompatibility
           with single page apps (like this one).
         </p>
-        <p style={s.p}>
+        {/* <p style={s.p}>
           Please see the {repoReadmeLink('repo readme')} for instructions on how to
           use this boilerplate to deploy your own single page app using GitHub Pages.
+        </p> */}
+        <p style={s.p}>
+          Triggerchat home page.
         </p>
         <div style={s.pageLinkContainer}>
           <Interactive

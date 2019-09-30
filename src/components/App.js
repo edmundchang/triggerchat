@@ -11,12 +11,12 @@ export default function App() {
   return (
     <div style={s.root}>
       <h1 style={s.title}>Single Page Apps for GitHub Pages</h1>
-      <Interactive
+      {/* <Interactive
         as="a"
         href="https://github.com/edmundchang"
         style={s.repoLink}
         {...s.link}
-      >https://github.com/edmundchang</Interactive>
+      >https://github.com/edmundchang</Interactive> */}
 
       <nav style={s.breadcrumbs}>
         <Breadcrumbs />
@@ -31,13 +31,13 @@ export default function App() {
       <div style={s.creditLine}>
         <Interactive
           as="a"
-          href="https://github.com/edmundchang"
+          href="https://www.bing.com/search?q=laptop&pc=MOZI&form=MOZLBR"
           interactiveChild
           focus={{}}
           touchActive={{}}
           touchActiveTapOnly
         >
-          Code and concept by <span {...s.childLink}>Edmund Chang</span>
+          Code and concept by <span {...s.childLink}>Laptop Computer</span>
         </Interactive>
       </div>
     </div>
