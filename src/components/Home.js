@@ -32,7 +32,10 @@ export default class Home extends React.Component {
     super(props);
     this.state = {
       loggedIn: false,
-      username: ""
+      username: "",
+      error: null,
+      isLoaded: false,
+      cfWorkerResult: ""
     }
     console.log('in constructor');
   }
@@ -77,6 +80,26 @@ export default class Home extends React.Component {
 
   componentDidMount() {
     //this.setState({ loggedIn: false });
+
+    fetch("https://retrieve_worker.triggerchat.workers.dev/?q=s", { mode: 'no-cors' })
+      //.then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            isLoaded: true,
+            cfWorkerResult: result
+          });
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error
+          });
+        }
+      )
   }
 
   componentWillUnmount() {
@@ -85,6 +108,8 @@ export default class Home extends React.Component {
 
 
   render() {
+    const { error, isLoaded, cfWorkerResult } = this.state;
+
     return (
       <div>
         <p style={s.p}>
@@ -138,6 +163,12 @@ export default class Home extends React.Component {
             onRequest={(e) => { this.loadingResponse(e) }}
             cookiePolicy={'single_host_origin'}
           />}
+
+        <br></br>
+
+        {this.state.error ?
+          <div>Error: {error}</div> :
+          <div>{JSON.stringify(cfWorkerResult)}</div>}
 
         <br></br>
         <a href="https://www.buymeacoffee.com/A2HxJ4D" target="_blank"><img src="https://bmc-cdn.nyc3.digitaloceanspaces.com/BMC-button-images/custom_images/yellow_img.png" alt="Buy Me A Coffee" /></a>
