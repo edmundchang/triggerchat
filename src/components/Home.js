@@ -6,7 +6,7 @@ import s from '../styles/home.style';
 import { GoogleLogout } from 'react-google-login';
 import { GoogleLogin } from 'react-google-login';
 import WelcomeMessage from './WelcomeMessage';
-
+import axios from 'axios';
 
 // import entire SDK
 var AWS = require('aws-sdk');
@@ -81,25 +81,15 @@ export default class Home extends React.Component {
   componentDidMount() {
     //this.setState({ loggedIn: false });
 
-    fetch("https://retrieve_worker.triggerchat.workers.dev/?q=s", { mode: 'no-cors' })
-      //.then(res => res.json())
-      .then(
-        (result) => {
-          this.setState({
-            isLoaded: true,
-            cfWorkerResult: result
-          });
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        (error) => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
-        }
-      )
+    axios.get('https://retrieve_worker.triggerchat.workers.dev/?q=s')
+      .then(res => {
+        console.log('in the axios GET response...');
+        console.log(res);
+        this.setState({
+          isLoaded: true,
+          cfWorkerResult: res
+        });
+      });
   }
 
   componentWillUnmount() {
