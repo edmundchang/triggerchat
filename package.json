@@ -15,7 +15,7 @@
   "author": "Edmund Chang <chang.edmund@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "aws-sdk": "^2.507.0",
+    "aws-sdk": "^2.814.0",
     "axios": "^0.21.1",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
